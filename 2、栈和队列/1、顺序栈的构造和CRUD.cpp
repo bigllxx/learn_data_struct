@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h> 
 #define MaxSize 10
+#define ElemType char
 
 typedef struct{  // 构造一个顺序栈
-  int data[MaxSize];
+  ElemType data[MaxSize];
   int top;
 }SqStack;
 
@@ -16,7 +17,7 @@ bool Empty(SqStack S){  // 判空
  return false;
 }
 
-bool Push(SqStack &S, int x){  // 进栈
+bool Push(SqStack &S, ElemType x){  // 进栈
   if(S.top == MaxSize - 1) return false;
   // S.top = S.top + 1;
   // S.data[S.top] = x;
@@ -24,7 +25,7 @@ bool Push(SqStack &S, int x){  // 进栈
   return true;
 }
 
-bool Pull(SqStack &S, int &x){  // 出栈
+bool Pop(SqStack &S, ElemType &x){  // 出栈
   if(S.top == -1) return false;
   // x = S.data[S.top];
   // S.top = S.top -1;
@@ -32,7 +33,7 @@ bool Pull(SqStack &S, int &x){  // 出栈
   return true;
 }
 
-bool GetTop(SqStack &S, int &x){ // 读栈顶元素
+bool GetTop(SqStack &S, ElemType &x){ // 读栈顶元素
   if(S.top == -1) return false;
   x = S.data[S.top];
   return true;
