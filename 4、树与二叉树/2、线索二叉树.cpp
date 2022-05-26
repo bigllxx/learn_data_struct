@@ -68,11 +68,29 @@ ThreadTree FirestNode(ThreadNode *p){  // 找到p的最左下的节点（就是�
 
 ThreadTree NextNode(ThreadNode *p){  // 找p的后继节点
   if(p->rtag==0) return FirestNode(p->rchild);  // 找到p右子树的最左边节点（就是p的后继节点，好好想想是不是 左中右）
-  else return p->rchild;  // 如果右指针有线索，那右指针就指向后继节点
+  else return p->rchild;  // 如果右指针有线索，那右指针一定指向其后继节点
 }
 
-void Inorder(ThreadNode *T){  // 中序线索二叉树的遍历（不用递归了）
+void Inorder(ThreadNode *T){  // 中序线索二叉树的从前往后遍历（不用递归了）
   for(ThreadNode *p = FirestNode(T); p!=NULL; p=NextNode(p)){  // p等于FirestNode(T)，就是中序遍历的第一个节点；p=NextNode(p)就是p的后继节点
+    printf("%d", p->data);
+  }
+}
+
+
+
+ThreadTree LastNode(ThreadNode *p){  // 找到p的最右下的节点（就是中序遍历的最后一个节点）
+  while(p->rtag==0) p=p->rchild;
+  return p;
+}
+
+ThreadTree PreNode(ThreadNode *p){  // 找p的前驱节点
+  if(p->ltag==0) return LastNode(p->lchild);  // 找到p左子树的最右边节点（就是p的前驱节点）
+  else return p->lchild;  // 如果左指针有线索，那左指针一定指向其前驱节点
+}
+
+void Inorder(ThreadNode *T){  // 中序线索二叉树的从后往前遍历（不用递归了）
+  for(ThreadNode *p = LastNode(T); p!=NULL; p=PreNode(p)){  // FirestNode(T)，就是中序遍历的最后一个节点；p=NextNode(p)就是p的前驱节点
     printf("%d", p->data);
   }
 }
