@@ -68,6 +68,15 @@ void LevelOrder(BiTree T){  // 层序遍历
 }
 */
 
+int TreeDepth(BiTree T){  // 求树的深度
+  if(T==NULL) return 0;
+  else{
+    int l = TreeDepth(T->lchild);
+    int r = TreeDepth(T->rchild);
+    return l>r ? l+1 : r+1;
+  }
+}
+
 
 int main(){
   BiTree root;
