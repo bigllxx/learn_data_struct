@@ -30,7 +30,7 @@ void EnQueue(LinkQueue &Q, int x){  // 入队
   Q.rear = s;  // 尾指针指向s
 }
 
-bool DeQueue(LinkQueue &Q, int &x){
+bool DeQueue(LinkQueue &Q, int &x){  // 出队
   if(Q.front=Q.rear) return false;
   LinkNode *p = Q.front->next;
   x = p->data;
