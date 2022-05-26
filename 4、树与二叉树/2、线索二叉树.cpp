@@ -49,12 +49,30 @@ void PostThread(ThreadTree T){  // 后序遍历 左右中
 }
 
 
-void CreateInThread(ThreadTree T){  // 1、构造中序二叉树，入口方法
+void CreateInThread(ThreadTree T){  // 1、构造中序线索二叉树，入口方法
   pre = NULL;
   if(T != NULL){ 
     InThread(T);  // 中序线索化
     // PreThread(T);  // 先序线索化
     // PostThread(T);  // 后序线索化
     if(pre->rchild == NULL) pre->rtag=1;  // 最后一个节点也要线索化（指向NULL、更新标志位）
+  }
+}
+
+
+
+ThreadTree FirestNode(ThreadNode *p){  // 找到p的最左下的节点（就是中序遍历的第一个节点）
+  while(p->ltag==0) p=p->lchild;
+  return p;
+}
+
+ThreadTree NextNode(ThreadNode *p){  // 找p的后继节点
+  if(p->rtag==0) return FirestNode(p->rchild);  // 找到p右子树的最左边节点（就是p的后继节点，好好想想是不是 左中右）
+  else return p->rchild;  // 如果右指针有线索，那右指针就指向后继节点
+}
+
+void Inorder(ThreadNode *T){  // 中序线索二叉树的遍历（不用递归了）
+  for(ThreadNode *p = FirestNode(T); p!=NULL; p=NextNode(p)){  // p等于FirestNode(T)，就是中序遍历的第一个节点；p=NextNode(p)就是p的后继节点
+    printf("%d", p->data);
   }
 }
