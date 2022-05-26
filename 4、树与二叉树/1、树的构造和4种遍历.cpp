@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "/Users/bigllxx/code/c/2、栈和队列/4、链队列的构造和CRUD.cpp"
+// #include "/Users/bigllxx/code/c/2、栈和队列/4、链队列的构造和CRUD.cpp"
 
 #define ElemType int
 
@@ -39,16 +39,16 @@ void PreOrder(BiTree T){  // 先序遍历  中左右
 
 void InOrder(BiTree T){  // 中序遍历 左中右
     if(T !=NULL){
-    PreOrder(T->lchild);
+    InOrder(T->lchild);
     printf("%d", T->data);
-    PreOrder(T->rchild);
+    InOrder(T->rchild);
   }
 }
 
 void PostOrder(BiTree T){  // 后序遍历 左右中
     if(T !=NULL){
-    PreOrder(T->lchild);
-    PreOrder(T->rchild);
+    PostOrder(T->lchild);
+    PostOrder(T->rchild);
     printf("%d", T->data);
   }
 }
